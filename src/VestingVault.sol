@@ -13,26 +13,27 @@ import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 contract VestingVault is Ownable, ReentrancyGuard {
     using SafeERC20 for IERC20;
 
-    // ============================================================
-    //  PROVIDED PART
-    // ============================================================
 
+
+
+    // ============================================================
+    //  PROVIDED PART (identical to the student starter file)
+    // ============================================================
     struct Schedule {
         address beneficiary;
-        uint256 total;
-        uint256 released;
-        uint64 start;
-        uint64 cliff;
-        uint64 duration;
-        uint64 revokedAt;
+        uint256 total;      // total tokens promised
+        uint256 released;   // tokens already paid out
+        uint64 start;       // unix time when vesting starts
+        uint64 cliff;       // seconds after `start` before ANY token vests
+        uint64 duration;    // seconds after `start` when 100% is vested
+        uint64 revokedAt;   // 0 while not revoked
         bool revocable;
         bool revoked;
     }
 
     IERC20 public immutable token;
-    uint256 public scheduleCount;
-    uint256 public totalAllocated;
-
+    uint256 public scheduleCount;                       // ids start from 1
+    uint256 public totalAllocated;                      // tokens promised to beneficiaries and not yet paid out
     mapping(uint256 => Schedule) public schedules;
     mapping(address => uint256[]) private _schedulesOf;
 
@@ -45,6 +46,7 @@ contract VestingVault is Ownable, ReentrancyGuard {
         require(address(token_) != address(0), "zero token");
         token = token_;
     }
+
 
     // ============================================================
     //  YOUR CODE STARTS HERE
