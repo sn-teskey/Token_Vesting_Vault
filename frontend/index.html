@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VestingVault | Token Vesting Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="brand">
+        <div class="logo">V</div>
+        <div>
+            <h1>VestingVault</h1>
+            <p>Decentralized Token Vesting Platform</p>
+        </div>
+    </div>
+
+    <div class="wallet-section">
+        <span id="networkName" class="badge">Disconnected</span>
+        <button id="connectBtn">Connect Wallet</button>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="eyebrow">SMART CONTRACT POWERED</span>
+        <h2>Token Vesting Dashboard</h2>
+        <p>Manage, distribute and unlock tokens securely on Ethereum.</p>
+        <div id="walletInfo">Connect your wallet to get started.</div>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <span>Vault Balance</span>
+            <h2 id="vaultBalance">—</h2>
+            <small>TST</small>
+        </div>
+
+        <div class="stat">
+            <span>Total Allocated</span>
+            <h2 id="allocated">—</h2>
+            <small>TST</small>
+        </div>
+
+        <div class="stat">
+            <span>Unallocated</span>
+            <h2 id="unallocated">—</h2>
+            <small>TST</small>
+        </div>
+
+        <div class="stat">
+            <span>Wallet Balance</span>
+            <h2 id="walletBalance">—</h2>
+            <small>TST</small>
+        </div>
+    </section>
+
+    <div id="status" class="status" hidden></div>
+
+    <section id="ownerPanel" hidden>
+        <h2 class="section-title">Owner Dashboard</h2>
+
+        <div class="panel">
+            <h3>Create Vesting Schedule</h3>
+
+            <form id="createForm">
+                <label>Beneficiary Address</label>
+                <input id="beneficiary" type="text"
+                       placeholder="0x..."
+                       required>
+
+                <div class="form-grid">
+                    <div>
+                        <label>Amount (TST)</label>
+                        <input id="amount" type="text"
+                               value="1000" required>
+                    </div>
+
+                    <div>
+                        <label>Start Delay (seconds)</label>
+                        <input id="startDelay" type="number"
+                               value="0" min="0" required>
+                    </div>
+
+                    <div>
+                        <label>Cliff (seconds)</label>
+                        <input id="cliff" type="number"
+                               value="60" min="0" required>
+                    </div>
+
+                    <div>
+                        <label>Duration (seconds)</label>
+                        <input id="duration" type="number"
+                               value="300" min="1" required>
+                    </div>
+                </div>
+
+                <label class="checkbox">
+                    <input id="revocable" type="checkbox" checked>
+                    Revocable schedule
+                </label>
+
+                <button type="submit">
+                    Create Vesting Schedule
+                </button>
+            </form>
+        </div>
+
+        <div class="form-grid">
+            <div class="panel">
+                <h3>Fund Vault</h3>
+
+                <form id="fundForm">
+                    <label>Amount (TST)</label>
+                    <input id="fundAmount" type="text"
+                           value="1000" required>
+                    <button type="submit">Deposit Tokens</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h3>Withdraw Unallocated</h3>
+
+                <form id="withdrawForm">
+                    <label>Recipient Address</label>
+                    <input id="withdrawTo" type="text"
+                           placeholder="0x..." required>
+                    <button type="submit" class="secondary">
+                        Withdraw Tokens
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="schedules-section">
+        <div class="section-heading">
+            <div>
+                <h2>Vesting Schedules</h2>
+                <p id="scheduleCount">0 schedules</p>
+            </div>
+
+            <div class="toolbar">
+                <select id="scheduleFilter">
+                    <option value="all">All Schedules</option>
+                    <option value="mine">My Schedules</option>
+                </select>
+
+                <button id="refreshBtn" class="secondary">
+                    Refresh
+                </button>
+            </div>
+        </div>
+
+        <div id="scheduleList">
+            <div class="empty">
+                Connect your wallet to view schedules.
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>VestingVault — Ethereum Token Vesting DApp</p>
+    <p>Solidity · Hardhat · Ethers.js · MetaMask</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
