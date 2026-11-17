@@ -1,0 +1,30 @@
+# Node modules
+/node_modules
+
+# Compilation output
+/dist
+/bundle
+/artifacts
+/cache
+
+# Typechain output
+/types
+/typechain-types
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Hardhat coverage reports
+/coverage
+coverage.json
+
+# Gas snapshot files
+/.gas-snapshot
+
+# Snapshot cheatcodes output
+/snapshots
+
+# Log files
+*.log
