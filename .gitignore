@@ -28,3 +28,12 @@ coverage.json
 
 # Log files
 *.log
+/frontend/ethers.min.js
+# Development assistant files
+/.agents/
+/.claude/
+/AGENTS.md
+/CLAUDE.md
+
+# Unused template script
+/scripts/send-op-tx.ts
