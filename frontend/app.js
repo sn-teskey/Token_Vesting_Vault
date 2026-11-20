@@ -1,5 +1,5 @@
 
-import { ethers } from "../node_modules/ethers/dist/ethers.min.js";
+import { ethers } from "./ethers.min.js";
 import { CONFIG } from "./config.js";
 
 const VAULT_ABI = [
